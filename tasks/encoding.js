@@ -8,6 +8,8 @@
 'use strict';
 
 var
+    charsetDetector = require('charset-detector');
+var
     fs = require('fs'),
     jschardet = require('jschardet');
 
@@ -48,7 +50,8 @@ module.exports = function (grunt) {
     var checkFileEncoding = function(patch, encodings, prohibitionMode) {
         var text, encoding, msg;
         text = fs.readFileSync(patch);
-        encoding = jschardet.detect(text).encoding;
+        encoding = charsetDetector(text)[0].charsetName;
+        // encoding = jschardet.detect(text).encoding;
         grunt.log.write('the file ' + patch + ' was detected like ' + encoding + ' encoding \n');
         if (prohibitionMode === true) {
             if (encodings.indexOf(encoding) > -1) {

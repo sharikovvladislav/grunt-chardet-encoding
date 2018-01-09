@@ -25,6 +25,7 @@
   ],
   "main": "Gruntfile.js",
   "dependencies": {
+    "charset-detector": "0.0.2",
     "jschardet": "^1.6.0"
   },
   "devDependencies": {
